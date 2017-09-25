@@ -6,16 +6,16 @@ var Campground = require('../models/campground'),
     Comment    = require('../models/comment');
 
 
-// COMMENT NEW
-router.get('/new', middleware.isLoggedIn, function(req, res) {
-    Campground.findById(req.params.id, function (err, foundCampground) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('comments/new', {campground: foundCampground});
-        }
-    });
-});
+// // COMMENT NEW
+// router.get('/new', middleware.isLoggedIn, function(req, res) {
+//     Campground.findById(req.params.id, function (err, foundCampground) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.render('comments/new', {campground: foundCampground});
+//         }
+//     });
+// });
 
 // COMMENT CREATE
 router.post('/', middleware.isLoggedIn, function(req, res) {
