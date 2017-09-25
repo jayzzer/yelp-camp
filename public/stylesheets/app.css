@@ -1,3 +1,8 @@
+#campgrounds {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .thumbnail img {
     width: 100%;
 }
@@ -12,6 +17,12 @@
 
 .delete-form {
     display: inline;
+}
+
+.form-center {
+    width: 30%;
+    min-width: 351px;
+    margin: 25px auto;
 }
 
 textarea {
