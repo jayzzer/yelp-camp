@@ -7,9 +7,7 @@ var express         = require('express'),
     passport        = require('passport'),
     LocalStrategy   = require('passport-local'),
     seedDB          = require('./seeds'),
-    User            = require('./models/user'),
-    Campground      = require('./models/campground'),
-    Comment         = require('./models/comment');
+    User            = require('./models/user');
 
 // Routes
 var indexRoutes      = require('./routes/index'),
@@ -23,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(require('express-session')({
-    secret: 'Fuck this authentication. I\'m done!',
+    secret: process.env.SESSIONKEY,
     resave: false,
     saveUninitialized: false
 }));
