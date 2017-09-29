@@ -6,13 +6,24 @@ var Campground = require('../models/campground');
 
 // INDEX ROUTE
 router.get('/', function (req, res) {
-    Campground.find({}, function (err, campgrounds) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('campgrounds/index', {campgrounds: campgrounds});
-        }
-    });
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Campground.find({name: regex}, function(err, campgrounds) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('campgrounds/index', {campgrounds: campgrounds});
+            }
+        });
+    } else {
+        Campground.find({}, function (err, campgrounds) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('campgrounds/index', {campgrounds: campgrounds});
+            }
+        });
+    }
 });
 
 // CREATE ROUTE
@@ -79,5 +90,8 @@ router.delete('/:id', middleware.isCampgroundOwnership, function (req, res) {
     });
 });
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router;

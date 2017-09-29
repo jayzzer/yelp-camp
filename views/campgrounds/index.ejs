@@ -23,6 +23,14 @@
                 </div>
             </div>
         <% }); %>
+        <% if (campgrounds == false) { %>
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h1>No campgrounds match that query, please try again!</h1>
+                    <a href="/campgrounds" class="btn btn-lg btn-success">View all campgrounds</a>
+                </div>
+            </div>
+        <% } %>
     </div>
 </div>
 
